@@ -15,9 +15,9 @@ const (
 )
 
 var (
-	board         = [3][3]int{}
-	players       = []string{"X", "O"}
-	currentPlayer = 0
+	board = [3][3]int{}
+	// players       = []string{"X", "O"}
+	currentPlayer = 1
 )
 
 type Game struct{}
@@ -50,11 +50,8 @@ func (g *Game) Update() error {
 			board[i][j] = currentPlayer
 		}
 
-		if currentPlayer == 0 {
-			currentPlayer++
-		} else {
-			currentPlayer--
-		}
+		currentPlayer *= -1
+
 	}
 
 	return nil
