@@ -32,9 +32,8 @@ func (g *Game) Update() error {
 
 		if board[i][j] == 0 {
 			board[i][j] = currentPlayer
+			currentPlayer *= -1
 		}
-
-		currentPlayer *= -1
 
 	}
 
@@ -44,6 +43,8 @@ func (g *Game) Update() error {
 func (g *Game) Draw(screen *ebiten.Image) {
 	screen.Fill(color.White)
 	for i := 0; i < 3; i++ {
+		ebitenutil.DrawLine(screen, float64(i*cellSize), (cellSize / 6), float64(i*cellSize), (cellSize*3)-cellSize/6, color.RGBA{50, 50, 50, 255})
+		ebitenutil.DrawLine(screen, (cellSize / 6), float64(i*cellSize), (cellSize*3)-cellSize/6, float64(i*cellSize), color.RGBA{50, 50, 50, 255})
 		for j := 0; j < 3; j++ {
 			x, y := i*cellSize, j*cellSize
 			var c color.Color
@@ -53,9 +54,9 @@ func (g *Game) Draw(screen *ebiten.Image) {
 			case -1:
 				c = color.RGBA{0, 0, 255, 255} // Blue for player 2
 			default:
-				c = color.RGBA{0, 0, 0, 255} // Black for empty cells
+				c = color.White
 			}
-			ebitenutil.DrawRect(screen, float64(x), float64(y), cellSize, cellSize, c)
+			ebitenutil.DrawRect(screen, float64(x)+(cellSize/3), float64(y)+(cellSize/3), cellSize/3, cellSize/3, c)
 		}
 	}
 }
