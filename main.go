@@ -5,8 +5,8 @@ import (
 	"log"
 
 	"github.com/hajimehoshi/ebiten/v2"
-	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
 	"github.com/hajimehoshi/ebiten/v2/inpututil"
+	"github.com/hajimehoshi/ebiten/v2/vector"
 )
 
 const (
@@ -43,8 +43,8 @@ func (g *Game) Update() error {
 func (g *Game) Draw(screen *ebiten.Image) {
 	screen.Fill(color.White)
 	for i := 0; i < 3; i++ {
-		ebitenutil.DrawLine(screen, float64(i*cellSize), (cellSize / 6), float64(i*cellSize), (cellSize*3)-cellSize/6, color.RGBA{50, 50, 50, 255})
-		ebitenutil.DrawLine(screen, (cellSize / 6), float64(i*cellSize), (cellSize*3)-cellSize/6, float64(i*cellSize), color.RGBA{50, 50, 50, 255})
+		vector.StrokeLine(screen, float32(i*cellSize), (cellSize / 6), float32(i*cellSize), (cellSize*3)-cellSize/6, float32(5), color.RGBA{50, 50, 50, 255}, true)
+		vector.StrokeLine(screen, (cellSize / 6), float32(i*cellSize), (cellSize*3)-cellSize/6, float32(i*cellSize), float32(5), color.RGBA{50, 50, 50, 255}, true)
 		for j := 0; j < 3; j++ {
 			x, y := i*cellSize, j*cellSize
 			var c color.Color
@@ -56,7 +56,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 			default:
 				c = color.White
 			}
-			ebitenutil.DrawRect(screen, float64(x)+(cellSize/3), float64(y)+(cellSize/3), cellSize/3, cellSize/3, c)
+			vector.DrawFilledRect(screen, float32(x)+(cellSize/3), float32(y)+(cellSize/3), cellSize/3, cellSize/3, c, true)
 		}
 	}
 }
