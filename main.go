@@ -47,16 +47,19 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		vector.StrokeLine(screen, (cellSize / 6), float32(i*cellSize), (cellSize*3)-cellSize/6, float32(i*cellSize), float32(5), color.RGBA{50, 50, 50, 255}, true)
 		for j := 0; j < 3; j++ {
 			x, y := i*cellSize, j*cellSize
-			var c color.Color
+			// var c color.Color
 			switch board[i][j] {
 			case 1:
-				c = color.RGBA{255, 0, 0, 255} // Red for player 1
+				vector.StrokeLine(screen, float32(x)+(cellSize/3), float32(y)+(cellSize/3), float32(x)+(2*(cellSize/3)), float32(y)+(2*cellSize/3), float32(7), color.Black, true)
+				vector.StrokeLine(screen, float32(x)+(2*(cellSize/3)), float32(y)+(cellSize/3), float32(x)+(cellSize/3), float32(y)+(2*(cellSize/3)), float32(7), color.Black, true)
+
 			case -1:
-				c = color.RGBA{0, 0, 255, 255} // Blue for player 2
+				c := color.RGBA{255, 0, 0, 255} // Red for player 1
+				vector.DrawFilledCircle(screen, float32(x+(cellSize/3)+(cellSize/6)), float32(y+(cellSize/3)+(cellSize/6)), (cellSize/3)-(cellSize/6), c, true)
+				vector.DrawFilledCircle(screen, float32(x+(cellSize/3)+(cellSize/6)), float32(y+(cellSize/3)+(cellSize/6)), (cellSize / 7), color.White, true)
 			default:
-				c = color.White
 			}
-			vector.DrawFilledRect(screen, float32(x)+(cellSize/3), float32(y)+(cellSize/3), cellSize/3, cellSize/3, c, true)
+			// vector.DrawFilledRect(screen, float32(x)+(cellSize/3), float32(y)+(cellSize/3), cellSize/3, cellSize/3, c, true)
 		}
 	}
 }
