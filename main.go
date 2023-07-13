@@ -25,22 +25,6 @@ type Game struct{}
 type Image struct {
 }
 
-// func (g *Game) Update() error {
-// 	if inpututil.IsMouseButtonJustReleased(ebiten.MouseButtonLeft) {
-// 		x, y := ebiten.CursorPosition()
-// 		i, j := x/cellSize, y/cellSize
-
-//			if board[i][j] == 0 {
-//				board[i][j] = players[currentPlayer]
-//				if currentPlayer == 0 {
-//					currentPlayer++
-//				} else {
-//					currentPlayer--
-//
-//			}
-//			return nil
-//		}
-//	}
 func (g *Game) Update() error {
 	if inpututil.IsMouseButtonJustReleased(ebiten.MouseButtonLeft) {
 		x, y := ebiten.CursorPosition()
